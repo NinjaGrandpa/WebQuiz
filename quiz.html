@@ -58,14 +58,21 @@
       <div class="container mt-4">
         <div class="row text-center">
           <div class="col-3">
-            <button type="button" class="btn btn-dark">Start!</button>
+            <button
+              id="start-button"
+              type="button"
+              onclick="displayQuestions()"
+              class="btn btn-dark text-info fw-bold fs-3 mt-4"
+            >
+              Start!
+            </button>
           </div>
           <div class="col-6 text-center">
             <ul id="question-list" class="list-group"></ul>
           </div>
           <div class="col-3">
             <h2 class="text-dark">Score</h2>
-            <h1 class="fw-bold text-bg-dark text-info">1</h1>
+            <h1 id="score-display" class="fw-bold text-bg-dark text-info">0</h1>
           </div>
         </div>
       </div>
