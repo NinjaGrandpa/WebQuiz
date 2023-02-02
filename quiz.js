@@ -9,11 +9,13 @@ const questions = [];
 const questionList = document.querySelector("#question-list");
 const scoreDisplay = document.querySelector("#score-display");
 let score = 0;
+let questionsAnswered = 0;
 
 async function startButtonClick() {
-    score = 0;
-    scoreDisplay.innerText = score;
-    
+  questionsAnswered = 0;
+  score = 0;
+  scoreDisplay.innerText = score;
+
   const url = new URL(
     `https://opentdb.com/api.php?amount=10&category=12&type=boolean`
   );
@@ -26,7 +28,7 @@ async function startButtonClick() {
     questions.splice(0, questions.length);
 
     for (const result of jsonResponse.results) {
-        questions.push(new Question(result.question, result.correct_answer))
+      questions.push(new Question(result.question, result.correct_answer));
     }
 
     while (questionList.childElementCount > 0) {
@@ -109,4 +111,13 @@ function guessButtonClick(question, guess, cardBody, falseButton, trueButton) {
   scoreDisplay.innerText = score;
   trueButton.disabled = true;
   falseButton.disabled = true;
+  questionsAnswered++;
+  checkAllQuestionsAnswered();
+}
+
+function checkAllQuestionsAnswered() {
+  if (questionsAnswered == questions.length) {
+    const localStorage = window["localStorage"];
+    localStorage.setItem("test", "dojdoj");
+  }
 }
