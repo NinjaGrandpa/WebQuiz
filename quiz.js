@@ -5,21 +5,27 @@ class Question {
   }
 }
 
+const questions = [];
 const questionList = document.querySelector("#question-list");
 const scoreDisplay = document.querySelector("#score-display");
 let score = 0;
 
-const questions = [
-  new Question("Skiter björnen i skogen?", "True"),
-  new Question("Är snus viktigare än mat?", "True"),
-  new Question("Borde designare få programmera?", "False"),
-];
+function startButtonClick(){
+    questions.splice(0, questions.length);
+
+    questions.push(
+        new Question("Skiter björnen i skogen?", "True"),
+        new Question("Är snus viktigare än mat?", "True"),
+        new Question("Borde designare få programmera?", "False"),
+    );
+      while (questionList.childElementCount > 0){
+            questionList.children[0].remove();
+      }
+      displayQuestions();
+}
 
 function displayQuestions() {
-    for (let i = 0; i < questionList.childElementCount;) {
-        questionList.children[0].remove();
-        
-    }
+
   for (const question of questions) {
     // Skapa element
     const card = document.createElement("li");
