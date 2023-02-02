@@ -10,22 +10,33 @@ const questionList = document.querySelector("#question-list");
 const scoreDisplay = document.querySelector("#score-display");
 let score = 0;
 
-function startButtonClick(){
+async function startButtonClick() {
+    score = 0;
+    scoreDisplay.innerText = score;
+    
+  const url = new URL(
+    `https://opentdb.com/api.php?amount=10&category=12&type=boolean`
+  );
+
+  const response = await fetch(url);
+  if (response.status === 200) {
+    const jsonResponse = await response.json();
+    console.log(jsonResponse);
+
     questions.splice(0, questions.length);
 
-    questions.push(
-        new Question("Skiter björnen i skogen?", "True"),
-        new Question("Är snus viktigare än mat?", "True"),
-        new Question("Borde designare få programmera?", "False"),
-    );
-      while (questionList.childElementCount > 0){
-            questionList.children[0].remove();
-      }
-      displayQuestions();
+    for (const result of jsonResponse.results) {
+        questions.push(new Question(result.question, result.correct_answer))
+    }
+
+    while (questionList.childElementCount > 0) {
+      questionList.children[0].remove();
+    }
+    displayQuestions();
+  }
 }
 
 function displayQuestions() {
-
   for (const question of questions) {
     // Skapa element
     const card = document.createElement("li");
