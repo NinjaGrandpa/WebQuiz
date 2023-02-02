@@ -31,7 +31,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <script defer src="script.js"></script>
+    <script defer src="quiz.js"></script>
   </head>
 
   <body class="bg-secondary">
@@ -46,7 +46,9 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link text-bg-info text-info text-black active fw-bold" href="#"
+          <a
+            class="nav-link text-bg-info text-info text-black active fw-bold"
+            href="#"
             >Quiz</a
           >
         </li>
@@ -56,12 +58,14 @@
       <div class="container mt-4">
         <div class="row text-center">
           <div class="col-3">
-            <button type="button" class="btn btn-dark text-warning">Button</button>
+            <button type="button" class="btn btn-dark">Start!</button>
           </div>
-          <div class="col-6 text-center"></div>
+          <div class="col-6 text-center">
+            <ul id="question-list" class="list-group"></ul>
+          </div>
           <div class="col-3">
             <h2 class="text-dark">Score</h2>
-            <h1 class="fw-bold text-bg-dark text-warning">1</h1>
+            <h1 class="fw-bold text-bg-dark text-info">1</h1>
           </div>
         </div>
       </div>
